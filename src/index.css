@@ -1,0 +1,117 @@
+/* Bootstrap is scoped to specific interactive widgets (Offcanvas filter drawer,
+   image-gallery Modal/Carousel, Toast). It is imported first so Tailwind's
+   utility classes (loaded after, with higher practical specificity for the
+   utilities we actually use) can still override spacing/color on those
+   widgets when needed. */
+@import "bootstrap/dist/css/bootstrap.min.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ink: #2b1810;
+  --amber: #b7410e;
+  --cream: #faf3e8;
+}
+
+* {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background-color: var(--cream);
+  color: #2b1810;
+}
+
+h1, h2, h3, h4, h5, h6, .font-display {
+  font-family: "Oswald", sans-serif;
+  letter-spacing: 0.01em;
+}
+
+/* visible keyboard focus, respected everywhere */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Reusable component classes, built from Tailwind's @apply so markup stays clean */
+.btn-primary {
+  @apply inline-flex items-center justify-center gap-2 rounded-md bg-amber px-5 py-2.5 font-semibold text-white transition-colors hover:bg-amber-dark active:bg-amber-dark disabled:cursor-not-allowed disabled:opacity-50;
+}
+
+.btn-secondary {
+  @apply inline-flex items-center justify-center gap-2 rounded-md border border-ink/15 bg-white px-5 py-2.5 font-semibold text-ink transition-colors hover:border-ink/30 hover:bg-ink/5 disabled:cursor-not-allowed disabled:opacity-50;
+}
+
+.btn-ghost {
+  @apply inline-flex items-center justify-center gap-2 rounded-md px-4 py-2 font-medium text-ink/70 transition-colors hover:bg-ink/5 hover:text-ink;
+}
+
+.btn-danger-outline {
+  @apply inline-flex items-center justify-center gap-2 rounded-md border border-danger/30 px-4 py-2 font-semibold text-danger transition-colors hover:bg-danger/5;
+}
+
+.form-label {
+  @apply mb-1.5 block text-sm font-medium text-ink/80;
+}
+
+.form-input {
+  @apply w-full rounded-md border border-asphalt/25 bg-white px-3.5 py-2.5 text-[15px] text-ink placeholder:text-asphalt/60 transition-colors focus:border-amber focus:outline-none focus:ring-2 focus:ring-amber/30;
+}
+
+.form-input-error {
+  @apply border-danger focus:border-danger focus:ring-danger/25;
+}
+
+.form-error-text {
+  @apply mt-1 text-[13px] font-medium text-danger;
+}
+
+.card-surface {
+  @apply rounded-xl border border-ink/10 bg-white shadow-card;
+}
+
+.section-eyebrow {
+  @apply text-sm font-semibold text-amber-dark;
+}
+
+.chip {
+  @apply inline-flex items-center gap-1.5 rounded-full border border-ink/15 bg-white px-3 py-1 text-sm text-ink/80;
+}
+
+.chip-active {
+  @apply border-amber bg-amber/10 text-ink;
+}
+
+/* line clamp helper (fallback if plugin unavailable) */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
